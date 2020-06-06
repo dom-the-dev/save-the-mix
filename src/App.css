@@ -1,0 +1,43 @@
+body {
+    background-color: #282c34;
+}
+
+.btn {
+    padding: 19px 56px 21px;
+    border-radius: 500px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.btn--spotify {
+    background-color: #1DB954;
+    color: white;
+}
+
+.btn--spotify:hover {
+    background-color: #1ED760;
+}
+
+.stm__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+thead {
+    text-align: left;
+}
+
+td {
+    padding: 10px 10px 0 0;
+}
