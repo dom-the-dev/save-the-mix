@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project is motivated by Joe Karlssons:
+This project is inspired by Joe Karlssons:
 [how to build a spotify player with react in 15 minutes](https://levelup.gitconnected.com/how-to-build-a-spotify-player-with-react-in-15-minutes-7e01991bc4b6)
  
 ---

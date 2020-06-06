@@ -1,46 +1,47 @@
 import request from "./request";
+import store from "../redux/store";
 
-const setInitGet = (token) => {
+const setInitGet = () => {
     return {
         method: 'GET',
         headers: {
-            'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer ' + store.getState().token
         }
     }
 }
-const setInitPost = (token, body) => {
+const setInitPost = (body) => {
     return {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer ' + store.getState().token
         },
         body: JSON.stringify(body)
     }
 }
 
 const api = {
-    getUser: async (token) => {
-        return await request('https://api.spotify.com/v1/me', setInitGet(token))
+    getUser: async () => {
+        return request('https://api.spotify.com/v1/me', setInitGet())
     },
 
-    getUserPlaylists: (token, offset) => {
-        return request(`https://api.spotify.com/v1/me/playlists?limit=50&offset=${offset}`, setInitGet(token))
+    getUserPlaylists: (offset) => {
+        return request(`https://api.spotify.com/v1/me/playlists?limit=50&offset=${offset}`, setInitGet())
     },
 
-    getPlaylist: (token, playlistId) => {
-        return request(`'https://api.spotify.com/v1/playlists/${playlistId}`, setInitGet(token))
+    getPlaylist: (playlistId) => {
+        return request(`'https://api.spotify.com/v1/playlists/${playlistId}`, setInitGet())
     },
 
-    getPlaylistTracks: (token, playlistId) => {
-        return request(`https://api.spotify.com/v1/playlists/${playlistId}/tracks/`, setInitGet(token))
+    getPlaylistTracks: (playlistId) => {
+        return request(`https://api.spotify.com/v1/playlists/${playlistId}/tracks/`, setInitGet())
     },
 
-    createPlaylist: (token, body, userId) => {
-        return request(`https://api.spotify.com/v1/users/${userId}/playlists`, setInitPost(token, body))
+    createPlaylist: (body, userId) => {
+        return request(`https://api.spotify.com/v1/users/${userId}/playlists`, setInitPost(body))
     },
 
-    addTrackToPlaylist: (token, body, playlistId) => {
-        return request(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=`, setInitPost(token, body))
+    addTrackToPlaylist: (body, playlistId) => {
+        return request(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=`, setInitPost(body))
     }
 }
 
