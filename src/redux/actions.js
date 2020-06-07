@@ -3,7 +3,6 @@ import api from "../helper/api";
 export const isLoading = (state) => {
     return {type: 'IS_LOADING', payload: state}
 }
-
 export const setMessage = (state) => {
     return {type: 'SET_MESSAGE', payload: state}
 }
@@ -22,6 +21,29 @@ export const setToken = (token) => {
 
 export const setUser = (user) => {
     return {type: 'SET_USER', payload: user}
+}
+
+
+export const clearWeeklyMix = (weeklyMix) => {
+    return {type: 'CLEAR_WEEKLY_MIX', payload: weeklyMix}
+}
+
+export const clearToken = (token) => {
+    return {type: 'CLEAR_TOKEN', payload: token}
+}
+
+export const clearUser = (user) => {
+    return {type: 'CLEAR_USER', payload: user}
+}
+
+
+export const userLogout = () => {
+    return (dispatch) => {
+        dispatch(clearToken());
+        dispatch(clearUser());
+        dispatch(clearWeeklyMix());
+        dispatch(setMessage('successfully logged out'));
+    }
 }
 
 export const getUser = () => {
@@ -97,7 +119,6 @@ export const createPlaylist = (playlistBody, userId, trackUris) => {
             .then(res => {
                 api.addTrackToPlaylist(trackUris, res.id)
                     .then(res => {
-                        console.log('tracks added successfully', res);
                         dispatch(setMessage('PLAYLIST CREATED SUCCESSFULLY'))
                     })
                     .catch(err => console.log(err))

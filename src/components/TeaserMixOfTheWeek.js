@@ -8,15 +8,13 @@ const TeaserMixOfTheWeek = props => {
             <table>
                 <thead>
                 <tr>
-                    <th>Number</th>
                     <th>Artists</th>
                     <th>Track</th>
                 </tr>
                 </thead>
                 <tbody>
-                {tracks.map((track, index) =>
+                {tracks.map((track) =>
                     <tr key={track.track.id}>
-                        <td>{index + 1}</td>
                         <td>Artists: {track.track.artists[0].name}</td>
                         <td>Name: {track.track.name}</td>
                     </tr>

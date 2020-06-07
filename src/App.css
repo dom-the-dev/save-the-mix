@@ -1,44 +1,96 @@
 body {
-    background-color: #282c34;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #282c34;
 }
 
-.btn {
-    padding: 19px 56px 21px;
+/* TEXT */
+
+.stm-h1 {
+    margin: 0;
+}
+
+.stm-text {
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.stm-info_text {
+    font-size: 12px;
+    color: grey;
+    margin: 10px 0;
+}
+
+.stm-info_link {
+    color: #41295a;
+}
+
+
+/* BUTTONS */
+
+.stm-btn {
+    display: inline-block;
     border-radius: 500px;
+    padding: 10px 26px 10px;
     text-decoration: none;
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: normal;
+    font-size: 16px;
     cursor: pointer;
     border: none;
     outline: none;
+    margin: 10px 0;
+    color: white;
+
+    background: #41295a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
-.btn--spotify {
-    background-color: #1DB954;
-    color: white;
+.stm-btn--large {
+    padding: 19px 56px 21px;
+}
+
+.stm-btn--fullWidth {
+    display: block;
 }
 
 .btn--spotify:hover {
     background-color: #1ED760;
 }
 
-.stm__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
+/* START */
+.stm-start {
+    width: 100%;
+    height: 100vh;
 }
 
-.App-link {
-    color: #61dafb;
+.stm-start__intro {
+    width: 400px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-thead {
-    text-align: left;
+/* HEADER */
+.stm-header {
+    background: #41295a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #FFFFFF;
+    padding: 10px 0;
 }
 
-td {
-    padding: 10px 10px 0 0;
+.stm-header__content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* APP */
+
+.stm-app {
+    max-width: 800px;
+    margin: 0 auto;
 }

@@ -9,6 +9,8 @@ const weeklyMix = (state = intialState, action) => {
                 ...state,
                 tracks: action.payload.items
             }
+        case 'CLEAR_WEEKLY_MIX':
+            return intialState;
         default:
             return state;
     }

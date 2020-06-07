@@ -1,18 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {authEndpoint, clientId, redirectUri, scopes} from "./config/config";
 import hash from "./helper/hash";
 import "./App.css";
 import TeaserMixOfTheWeek from "./components/TeaserMixOfTheWeek";
 import {connect} from 'react-redux';
-import {getUser, setToken, getWeeklyMix, createPlaylist} from "./redux/actions";
+import {getUser, setToken, getWeeklyMix, createPlaylist, userLogout} from "./redux/actions";
+import Start from "./components/Start";
+import Header from "./components/Header";
 
 const App = props => {
 
-    const AUTH_HREF = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`;
     const TODAY = new Date();
 
-    const [error, setError] = useState(null);
     const [makePublic, setMakePublic] = useState(true);
     const [playlistName, setPlaylistName] = useState(`SAVE THE MIX ${TODAY.getMonth()}-${TODAY.getFullYear()}`);
 
@@ -64,37 +63,39 @@ const App = props => {
 
         let tracksUris = {uris: getTrackUri(props.weeklyMix.tracks)}
 
-        console.log('tracks uris', tracksUris);
-
         props.createPlaylist(playlistBody, props.user.id, tracksUris)
     }
 
-    return (
-        <div>
-            {error ? console.log(error) : null}
-            <div className="stm">
-                <header className="stm__header">
-                    <h1>Save the mix</h1>
-                </header>
-                {!props.token ? (
-                    <a className="btn btn--spotify" href={AUTH_HREF}>Login to Spotify</a>
-                ) : null}
+    if (!props.token) {
+        return <Start/>
+    }
 
-                {props.user && props.user.name ?
-                    <h1>Welcome, {props.user.name}</h1>
-                    : null}
+    return (
+        <div className="stm-wrapper">
+            <Header userName={props.user.name} message={props.message}/>
+            <div className={"stm-app"}>
+
+                {props.user ?
+                    <span>{props.user.name}</span>
+                    : null
+                }
+
 
                 {props.weeklyMix && props.weeklyMix.tracks && props.weeklyMix.tracks.length ?
                     <>
-                        <input value={playlistName} onChange={(e) => setPlaylistName(e.target.value)} type="text"
+                        <input value={playlistName} onChange={(e) => setPlaylistName(e.target.value)}
+                               type="text"
                                id="playlistName"/>
                         <label htmlFor="playlistName">Name your Playlist: </label>
                         <input onChange={() => setMakePublic(!makePublic)} id="publicPlaylist" type="checkbox"
                                checked={makePublic}/>
                         <label htmlFor="publicPlaylist">Make public?</label>
-                        <button className={"btn btn--spotify"} onClick={() => saveTheMix()}>Save the mix!</button>
+                        <button className={"btn btn--spotify btn--large"} onClick={() => saveTheMix()}>Save the
+                            mix!
+                        </button>
                     </>
-                    : null}
+                    : null
+                }
 
                 {props.weeklyMix && props.weeklyMix.tracks && props.weeklyMix.tracks.length ?
                     <TeaserMixOfTheWeek
@@ -128,6 +129,9 @@ const mapDispatchToProps = dispatch => {
         },
         createPlaylist: (playlistBody, userId, tracksUris) => {
             dispatch(createPlaylist(playlistBody, userId, tracksUris))
+        },
+        userLogout: () => {
+            dispatch(userLogout())
         }
     }
 }

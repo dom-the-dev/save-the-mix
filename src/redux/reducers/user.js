@@ -8,6 +8,8 @@ const user = (state = intialState, action) => {
                 id: action.payload.id,
                 country: action.payload.country
             };
+        case 'CLEAR_USER':
+            return intialState;
         default:
             return state;
     }
