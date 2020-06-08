@@ -4,16 +4,22 @@ import hash from "./helper/hash";
 import "./App.css";
 import TeaserMixOfTheWeek from "./components/TeaserMixOfTheWeek";
 import {connect} from 'react-redux';
-import {getUser, setToken, getWeeklyMix, createPlaylist, userLogout} from "./redux/actions";
+import {
+    getUser,
+    setToken,
+    createPlaylist,
+    userLogout,
+    getPlaylistsBySpotify,
+    getPlaylistTracks
+} from "./redux/actions";
 import Start from "./components/Start";
 import Header from "./components/Header";
+import Message from "./components/Message";
+import FormSaveMix from "./components/FormSaveMix";
 
 const App = props => {
 
-    const TODAY = new Date();
-
-    const [makePublic, setMakePublic] = useState(true);
-    const [playlistName, setPlaylistName] = useState(`SAVE THE MIX ${TODAY.getMonth()}-${TODAY.getFullYear()}`);
+    const [currentPlaylist, setCurrentPlaylist] = useState(null)
 
     useEffect(() => {
         if (!props.token) {
@@ -33,37 +39,34 @@ const App = props => {
 
     useEffect(() => {
         if (props.user && props.user.country) {
-            props.getWeeklyMix(0, getWeeklyMixName(props.user.country));
+            props.getPlaylistsBySpotify()
         }
 
     }, [props.user])
 
-    const getTrackUri = (tracks) => {
-        return tracks.map(track => `spotify:track:` + track.track.id)
+    useEffect(() => {
+        if (props.playlists && props.playlists.length) {
+            setCurrentPlaylist(props.playlists[0]);
+            props.getPlaylistTracks(props.playlists[0].id)
+        }
+    }, [props.playlists])
+
+    const changePlaylist = (id) => {
+        let newPlaylist = props.playlists.filter(playlist => playlist.id === id);
+        setCurrentPlaylist(newPlaylist[0])
+        props.getPlaylistTracks(id)
     }
 
-    const getWeeklyMixName = (language) => {
-        switch (language) {
-            case 'DE':
-                return 'Dein Mix der Woche';
-            case 'EN':
-                return 'Discover Weekly';
-            default:
-                return 'Discover Weekly';
-        }
-    }
 
-    const saveTheMix = () => {
-        let playlistBody = {
-            name: playlistName,
-            public: makePublic,
-            collaborative: false,
-            description: ''
-        }
-
-        let tracksUris = {uris: getTrackUri(props.weeklyMix.tracks)}
-
-        props.createPlaylist(playlistBody, props.user.id, tracksUris)
+    const renderPlaylists = () => {
+        return props.playlists.map(playlist => {
+            return (
+                <option key={playlist.id}
+                        onChange={() => changePlaylist(playlist.id)}
+                        value={playlist.id}>{playlist.name}
+                </option>
+            )
+        })
     }
 
     if (!props.token) {
@@ -72,35 +75,29 @@ const App = props => {
 
     return (
         <div className="stm-wrapper">
-            <Header userName={props.user.name} message={props.message}/>
+
+            {props.message ? <Message message={props.message} type={"error"}/> : null}
+
+            <Header userLogout={props.userLogout} userName={props.user.name} message={props.message}/>
+
             <div className={"stm-app"}>
 
                 {props.user ?
-                    <span>{props.user.name}</span>
+                    <span>Hey, {props.user.name}</span>
                     : null
                 }
 
+                <FormSaveMix/>
 
-                {props.weeklyMix && props.weeklyMix.tracks && props.weeklyMix.tracks.length ?
-                    <>
-                        <input value={playlistName} onChange={(e) => setPlaylistName(e.target.value)}
-                               type="text"
-                               id="playlistName"/>
-                        <label htmlFor="playlistName">Name your Playlist: </label>
-                        <input onChange={() => setMakePublic(!makePublic)} id="publicPlaylist" type="checkbox"
-                               checked={makePublic}/>
-                        <label htmlFor="publicPlaylist">Make public?</label>
-                        <button className={"btn btn--spotify btn--large"} onClick={() => saveTheMix()}>Save the
-                            mix!
-                        </button>
-                    </>
-                    : null
-                }
+                <label htmlFor="choosePlaylist">Choose Playlist to save:</label>
+                <select name="choosePlaylist" id="choosePlaylist" onChange={(e) => changePlaylist(e.target.value)}>
+                    {renderPlaylists()}
+                </select>
 
-                {props.weeklyMix && props.weeklyMix.tracks && props.weeklyMix.tracks.length ?
+                {props.tracks && props.tracks.length && currentPlaylist ?
                     <TeaserMixOfTheWeek
-                        mixOfTheWeek={props.weeklyMix}
-                        tracks={props.weeklyMix.tracks}
+                        playlist={currentPlaylist}
+                        tracks={props.tracks}
                     />
                     : null}
             </div>
@@ -112,7 +109,8 @@ const mapStateToProps = state => {
     return {
         token: state.token,
         user: state.user,
-        weeklyMix: state.weeklyMix
+        tracks: state.tracks,
+        playlists: state.playlists
     }
 }
 
@@ -124,14 +122,17 @@ const mapDispatchToProps = dispatch => {
         getUser: () => {
             dispatch(getUser())
         },
-        getWeeklyMix: (offset, mixName) => {
-            dispatch(getWeeklyMix(offset, mixName))
-        },
         createPlaylist: (playlistBody, userId, tracksUris) => {
             dispatch(createPlaylist(playlistBody, userId, tracksUris))
         },
         userLogout: () => {
             dispatch(userLogout())
+        },
+        getPlaylistsBySpotify: () => {
+            dispatch(getPlaylistsBySpotify(0))
+        },
+        getPlaylistTracks: (id) => {
+            dispatch(getPlaylistTracks(id))
         }
     }
 }

@@ -7,12 +7,12 @@ export const setMessage = (state) => {
     return {type: 'SET_MESSAGE', payload: state}
 }
 
-export const setWeeklyMix = (weeklyMix) => {
-    return {type: 'SET_WEEKLY_MIX', payload: weeklyMix}
+export const setPlaylistTracks = (tracks) => {
+    return {type: 'SET_TRACKS', payload: tracks}
 }
 
-export const setPlaylistTracks = (tracks) => {
-    return {type: 'SET_PLAYLIST_TRACKS', payload: tracks}
+export const setPlaylists = (tracks) => {
+    return {type: 'SET_PLAYLISTS', payload: tracks}
 }
 
 export const setToken = (token) => {
@@ -23,17 +23,20 @@ export const setUser = (user) => {
     return {type: 'SET_USER', payload: user}
 }
 
-
-export const clearWeeklyMix = (weeklyMix) => {
-    return {type: 'CLEAR_WEEKLY_MIX', payload: weeklyMix}
+export const clearPlaylists = () => {
+    return {type: 'CLEAR_PLAYLISTS'}
 }
 
-export const clearToken = (token) => {
-    return {type: 'CLEAR_TOKEN', payload: token}
+export const clearTracks = () => {
+    return {type: 'CLEAR_TRACKS'}
 }
 
-export const clearUser = (user) => {
-    return {type: 'CLEAR_USER', payload: user}
+export const clearToken = () => {
+    return {type: 'CLEAR_TOKEN'}
+}
+
+export const clearUser = () => {
+    return {type: 'CLEAR_USER'}
 }
 
 
@@ -41,7 +44,8 @@ export const userLogout = () => {
     return (dispatch) => {
         dispatch(clearToken());
         dispatch(clearUser());
-        dispatch(clearWeeklyMix());
+        dispatch(clearTracks());
+        dispatch(clearPlaylists());
         dispatch(setMessage('successfully logged out'));
     }
 }
@@ -66,18 +70,25 @@ export const getUser = () => {
     }
 }
 
-export const getWeeklyMix = (offset, mixName) => {
+export const getPlaylistsBySpotify = (offset) => {
     return (dispatch) => {
         dispatch(isLoading(true));
         api.getUserPlaylists(offset)
             .then(res => {
-                let weeklyMix = res.items.filter(playlist => playlist.name === mixName)[0];
-                if (weeklyMix) {
-                    dispatch(setWeeklyMix(weeklyMix));
-                    dispatch(getPlaylistTracks(weeklyMix.id));
-                } else {
-                    let newOffset = offset + 50;
-                    dispatch(getWeeklyMix(newOffset, mixName));
+                if (res.items.length) {
+                    let spotifyPlaylists = [];
+                    res.items.forEach(item => {
+                        if (item.owner.display_name === "Spotify") {
+                            spotifyPlaylists.push({
+                                name: item.name,
+                                id: item.id,
+                                description: item.description,
+                                image: item.images[0].url
+                            });
+                        }
+                    })
+                    dispatch(setPlaylists(spotifyPlaylists))
+                    dispatch(getPlaylistsBySpotify(offset + 50))
                 }
             })
             .catch(err => {
@@ -98,7 +109,7 @@ export const getPlaylistTracks = (playlistId) => {
         dispatch(isLoading(true));
         api.getPlaylistTracks(playlistId)
             .then(res => {
-                dispatch(setPlaylistTracks(res));
+                dispatch(setPlaylistTracks(res.items));
             })
             .catch(err => {
                 if (err.status === 401) {
@@ -134,3 +145,4 @@ export const createPlaylist = (playlistBody, userId, trackUris) => {
             })
     }
 }
+

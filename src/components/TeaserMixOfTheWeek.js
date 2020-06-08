@@ -1,34 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TablePlaylist from "./TablePlaylist";
 
 const TeaserMixOfTheWeek = props => {
-
-    const renderTracks = (tracks) => {
-        return (
-            <table>
-                <thead>
-                <tr>
-                    <th>Artists</th>
-                    <th>Track</th>
-                </tr>
-                </thead>
-                <tbody>
-                {tracks.map((track) =>
-                    <tr key={track.track.id}>
-                        <td>Artists: {track.track.artists[0].name}</td>
-                        <td>Name: {track.track.name}</td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
-        )
-    }
-
     return (
         <div>
-            <h1>{props.mixOfTheWeek.name}</h1>
-            <p>{props.mixOfTheWeek.description}</p>
-            {props.tracks ? renderTracks(props.tracks) : null}
+            <h1>{props.playlist.name}</h1>
+            {props.playlist.description ? <p>{props.playlist.description}</p> : null}
+            {props.tracks ?
+                <TablePlaylist tracks={props.tracks}/>
+                : null}
         </div>
     );
 };

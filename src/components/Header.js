@@ -15,9 +15,12 @@ const Header = props => {
     return (
         <div className={"stm-header"}>
             <div className="stm-header__content">
-                <button onClick={() => logOut()} className="btn btn--spotify">Logut</button>
-                <h1>Save the mix</h1>
-                <div className="message">{props.message}</div>
+                <h1>Save the Mix</h1>
+
+                <div className="stm-header__logout">
+                    <button onClick={() => logOut()} className="btn btn--spotify">Logut</button>
+                </div>
+
             </div>
         </div>
     );

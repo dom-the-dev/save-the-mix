@@ -9,7 +9,9 @@ const Start = () => {
             <div className="stm-start__intro">
                 <h1 className="stm-h1">Save the mix</h1>
 
-                <p className="stm-text">Missing the button to save your weekly mixes? Save the mix will help you!</p>
+                <p className="stm-text">Tired of loosing great playlists? <br/>
+                    Missing the button to save your personalized mixes? <br/>
+                    Save the mix will help you!</p>
 
                 <p className="stm-info_text">An open source project by <a className="stm-info_link"
                                                                           href="https://www.domthedev.com"

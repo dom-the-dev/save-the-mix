@@ -33,16 +33,16 @@ body {
     padding: 10px 26px 10px;
     text-decoration: none;
     text-transform: uppercase;
-    font-weight: normal;
-    font-size: 16px;
+    font-weight: bold;
+    font-size: 14px;
     cursor: pointer;
     border: none;
     outline: none;
     margin: 10px 0;
     color: white;
 
-    background: #41295a;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #41295a; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F0743, #41295a); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
@@ -76,14 +76,44 @@ body {
 
 /* HEADER */
 .stm-header {
-    background: #41295a;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: #41295a; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F0743, #41295a); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #FFFFFF;
     padding: 10px 0;
 }
 
 .stm-header__content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* MESSAGES */
+.stm-message {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.stm-message--success {
+    background-color: green;
+    color: black;
+}
+
+.stm-message--warning {
+    background-color: yellow;
+    color: black;
+}
+
+.stm-message--error {
+    background-color: red;
+    color: white;
+}
+
+.stm-message__content {
     max-width: 800px;
     margin: 0 auto;
 }
@@ -93,4 +123,22 @@ body {
 .stm-app {
     max-width: 800px;
     margin: 0 auto;
+}
+
+
+/* PLAYLIST TABLE*/
+.stm-playlist {
+    font-size: 12px;
+    text-align: left;
+}
+
+.stm-playlist td,
+.stm-playlist th {
+    width: 50%;
+}
+
+/* SAVE THE MIX */
+.stm-stm {
+    margin: 20px 0;
+    text-align: center;
 }
