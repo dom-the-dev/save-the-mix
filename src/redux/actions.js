@@ -79,6 +79,7 @@ export const getPlaylistsBySpotify = (offset) => {
                     let spotifyPlaylists = [];
                     res.items.forEach(item => {
                         if (item.owner.display_name === "Spotify") {
+                            console.log(item);
                             spotifyPlaylists.push({
                                 name: item.name,
                                 id: item.id,
@@ -109,7 +110,9 @@ export const getPlaylistTracks = (playlistId) => {
         dispatch(isLoading(true));
         api.getPlaylistTracks(playlistId)
             .then(res => {
-                dispatch(setPlaylistTracks(res.items));
+                // REMOVE TRACKS CONTENT
+                let validTracks = res.items.filter(item => item.track !== null)
+                dispatch(setPlaylistTracks(validTracks));
             })
             .catch(err => {
                 if (err.status === 401) {

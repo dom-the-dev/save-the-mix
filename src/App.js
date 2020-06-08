@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import hash from "./helper/hash";
 import "./App.css";
-import TeaserMixOfTheWeek from "./components/TeaserMixOfTheWeek";
 import {connect} from 'react-redux';
 import {
     getUser,
@@ -15,7 +14,7 @@ import {
 import Start from "./components/Start";
 import Header from "./components/Header";
 import Message from "./components/Message";
-import FormSaveMix from "./components/FormSaveMix";
+import Player from "./components/Player/Player";
 
 const App = props => {
 
@@ -57,49 +56,28 @@ const App = props => {
         props.getPlaylistTracks(id)
     }
 
-
-    const renderPlaylists = () => {
-        return props.playlists.map(playlist => {
-            return (
-                <option key={playlist.id}
-                        onChange={() => changePlaylist(playlist.id)}
-                        value={playlist.id}>{playlist.name}
-                </option>
-            )
-        })
-    }
-
     if (!props.token) {
         return <Start/>
     }
 
     return (
-        <div className="stm-wrapper">
-
+        <div className="stm-app">
             {props.message ? <Message message={props.message} type={"error"}/> : null}
 
             <Header userLogout={props.userLogout} userName={props.user.name} message={props.message}/>
 
-            <div className={"stm-app"}>
-
-                {props.user ?
-                    <span>Hey, {props.user.name}</span>
-                    : null
-                }
-
-                <FormSaveMix/>
-
-                <label htmlFor="choosePlaylist">Choose Playlist to save:</label>
-                <select name="choosePlaylist" id="choosePlaylist" onChange={(e) => changePlaylist(e.target.value)}>
-                    {renderPlaylists()}
-                </select>
-
-                {props.tracks && props.tracks.length && currentPlaylist ?
-                    <TeaserMixOfTheWeek
-                        playlist={currentPlaylist}
-                        tracks={props.tracks}
-                    />
-                    : null}
+            <div className={"container mt-5 mb-5"}>
+                <div className="row">
+                    {props.user && props.tracks && props.tracks.length && currentPlaylist ?
+                        <Player
+                            username={props.user.name}
+                            playlist={currentPlaylist}
+                            tracks={props.tracks}
+                            changePlaylist={changePlaylist}
+                            playlists={props.playlists}
+                        />
+                        : null}
+                </div>
             </div>
         </div>
     );

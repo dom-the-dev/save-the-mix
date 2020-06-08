@@ -17,7 +17,7 @@ const FormSaveMix = props => {
             description: ''
         }
 
-        let tracksUris = {uris: getTrackUri(props.weeklyMix.tracks)}
+        let tracksUris = {uris: getTrackUri(props.tracks)}
 
         props.createPlaylist(playlistBody, props.user.id, tracksUris)
     }
@@ -51,7 +51,7 @@ FormSaveMix.propTypes = {};
 const mapStateToProps = state => {
     return {
         user: state.user,
-        weeklyMix: state.weeklyMix
+        tracks: state.tracks,
     }
 }
 
