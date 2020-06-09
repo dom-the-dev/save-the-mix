@@ -2,6 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  
 ---
 
+1. copy config.dist.js to config.js
+2. adjust your clientId, redirectUri and the scopes
+3. copy env.dist to .env and adjust domain
 
 
 
