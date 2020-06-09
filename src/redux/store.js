@@ -13,11 +13,13 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+const middleware = process.env.NODE_ENV === "development" ? [logger]: []
+
 const store = createStore(
     persistedReducer,
     compose(
         applyMiddleware(thunk),
-        applyMiddleware(logger)
+        applyMiddleware(...middleware)
     )
 );
 

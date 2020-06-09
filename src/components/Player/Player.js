@@ -19,7 +19,7 @@ const Player = props => {
                 {selectedPlaylist ?
                     selectedTracks ?
                         <div>
-                            <button onClick={() => setSelectedPlaylist(false)}>
+                            <button onClick={() => setSelectedTracks(false)}>
                                 <FontAwesomeIcon icon={faArrowLeft}/>
                             </button>
                             SAVE THE MIX
