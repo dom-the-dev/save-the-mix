@@ -14,20 +14,23 @@ const Header = props => {
 
     return (
         <div className={"stm-header"}>
-            <div className="stm-header__content">
-                <h1>Save the Mix</h1>
+            <div className="container">
+                <div className="row stm-header__content">
+                    <h1 className={"stm-h1"}>Save the Mix</h1>
 
-                <div className="stm-header__logout">
-                    <button onClick={() => logOut()} className="btn btn--spotify">Logut</button>
+                    <div className="stm-header__logout">
+                        <button onClick={() => logOut()} className="stm-btn stm-btn--inverted stm-btn--small">Logut
+                        </button>
+                    </div>
+
                 </div>
-
             </div>
         </div>
     );
 };
 
 Header.propTypes = {
-    message: PropTypes.string
+    userLogout: PropTypes.func.isRequired
 };
 
 export default Header;

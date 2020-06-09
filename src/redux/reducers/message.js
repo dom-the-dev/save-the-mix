@@ -3,7 +3,10 @@ const intialState = null;
 const message = (state = intialState, action) => {
     switch (action.type) {
         case 'SET_MESSAGE':
-            return action.payload;
+            return {
+                message: action.payload.message,
+                type: action.payload.type,
+            };
         default:
             return state;
     }

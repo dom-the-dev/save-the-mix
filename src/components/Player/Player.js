@@ -1,67 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FormSaveMix from "../FormSaveMix";
+import {connect} from "react-redux";
+import CurrentPlaylist from "./CurrentPlaylist";
+import Playlists from "./Playlists";
+import Info from "./Info";
 
 const Player = props => {
-    const renderPlaylists = () => {
-        return (
-            <ul>
-                {props.playlists.map(playlist => {
-                    return (
-                        <li key={playlist.id}
-                            onClick={() => props.changePlaylist(playlist.id)}
-                            value={playlist.id}>
-                            {playlist.name}
-                        </li>
-                    )
-                })}
-            </ul>
-        )
-    }
-
-    const renderTracks = () => {
-        return (
-            props.tracks.map((track) =>
-                <div className={"stm-player__track"} key={track.track.id}>
-                    <div className={"stm-player__song"}>
-                        <span>{track.track.name}</span>
-                    </div>
-                    <div className={"stm-player__artist"}>
-                        <span>{track.track.artists[0].name}</span>
-                    </div>
-                </div>
-            )
-        )
-    }
-
     return (
         <div className={"stm-player col-12"}>
             <div className="row">
-                <div className="stm-player__playlists col-3">
-                    {props.username ? <span>Hey, {props.username}</span> : null}
-                    {renderPlaylists()}
-                </div>
+                <Playlists changePlaylist={props.changePlaylist}/>
 
-                <div className="stm-player__info col-6">
-                    <h1>{props.playlist.name}</h1>
-                    {props.playlist.description ? <p>{props.playlist.description}</p> : null}
-                    {props.playlist.image ? <img alt={props.playlist.name} src={props.playlist.image}/> : null}
+                <CurrentPlaylist
+                    handleTracks={props.handleTracks}
+                />
 
-                    <FormSaveMix/>
-
-                </div>
-
-                <div className="stm-player__currentPlaylist col-3">
-                    Playlist
-                    {props.tracks ?
-                        renderTracks()
-                        : null}
-                </div>
+                <Info name={props.playlist.name} description={props.playlist.description} image={props.playlist.image}
+                      tracks={props.tracks}/>
             </div>
         </div>
     );
 };
 
-Player.propTypes = {};
+Player.propTypes = {
+    tracks: PropTypes.array.isRequired,
+    handleTracks: PropTypes.func.isRequired,
+    changePlaylist: PropTypes.func.isRequired,
+    playlist: PropTypes.object.isRequired
+};
 
-export default Player;
+const mapStateToProps = state => {
+    return {
+        tracks: state.tracks,
+    }
+}
+
+export default connect(mapStateToProps)(Player);
+

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {createPlaylist, getUser, setToken, userLogout} from "../redux/actions";
+import {createPlaylist} from "../redux/actions";
 import {connect} from "react-redux";
 
 const FormSaveMix = props => {
@@ -17,7 +17,9 @@ const FormSaveMix = props => {
             description: ''
         }
 
-        let tracksUris = {uris: getTrackUri(props.tracks)}
+        let selected = props.tracks.filter(track => track.active === true)
+
+        let tracksUris = {uris: getTrackUri(selected)}
 
         props.createPlaylist(playlistBody, props.user.id, tracksUris)
     }
@@ -29,14 +31,14 @@ const FormSaveMix = props => {
     return (
         <div className={"stm-stm"}>
             <div className={"stm-stm__form"}>
-                <label htmlFor="playlistName">Name your Playlist: </label>
+                <label htmlFor="playlistName">Name your Playlist: </label> <br/>
                 <input value={playlistName} onChange={(e) => setPlaylistName(e.target.value)}
                        type="text"
                        id="playlistName"/>
             </div>
 
             <div className={"stm-stm__form"}>
-                <label htmlFor="publicPlaylist">Make public?</label>
+                <label htmlFor="publicPlaylist">Make it public?</label>
                 <input onChange={() => setMakePublic(!makePublic)} id="publicPlaylist" type="checkbox"
                        checked={makePublic}/>
             </div>
@@ -46,29 +48,23 @@ const FormSaveMix = props => {
     );
 };
 
-FormSaveMix.propTypes = {};
+FormSaveMix.propTypes = {
+    createPlaylist: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    tracks: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => {
     return {
         user: state.user,
-        tracks: state.tracks,
     }
 }
 
 
 const mapDispatchToProps = dispatch => {
     return {
-        setToken: token => {
-            dispatch(setToken(token))
-        },
-        getUser: () => {
-            dispatch(getUser())
-        },
         createPlaylist: (playlistBody, userId, tracksUris) => {
             dispatch(createPlaylist(playlistBody, userId, tracksUris))
-        },
-        userLogout: () => {
-            dispatch(userLogout())
         }
     }
 }

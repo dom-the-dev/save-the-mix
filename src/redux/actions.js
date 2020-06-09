@@ -3,8 +3,8 @@ import api from "../helper/api";
 export const isLoading = (state) => {
     return {type: 'IS_LOADING', payload: state}
 }
-export const setMessage = (state) => {
-    return {type: 'SET_MESSAGE', payload: state}
+export const setMessage = (state, type) => {
+    return {type: 'SET_MESSAGE', payload: {message: state, type: type}}
 }
 
 export const setPlaylistTracks = (tracks) => {
@@ -46,7 +46,7 @@ export const userLogout = () => {
         dispatch(clearUser());
         dispatch(clearTracks());
         dispatch(clearPlaylists());
-        dispatch(setMessage('successfully logged out'));
+        dispatch(setMessage('successfully logged out', 'success'));
     }
 }
 
@@ -59,7 +59,7 @@ export const getUser = () => {
             })
             .catch(err => {
                 if (err.status === 401) {
-                    dispatch(setMessage('PLEASE LOG IN'))
+                    dispatch(setMessage('PLEASE LOG IN', 'error'))
                     dispatch(setToken(null))
                 }
                 console.log('getUser error', err);
@@ -97,7 +97,7 @@ export const getPlaylistsBySpotify = (offset) => {
                     dispatch(setMessage('PLEASE LOG IN'))
                     dispatch(setToken(null))
                 }
-                console.log('getMixOfTheWeek error', err);
+                console.log('getPlaylistsBySpotify error', err);
             })
             .finally(() => {
                 dispatch(isLoading(false))
@@ -111,12 +111,13 @@ export const getPlaylistTracks = (playlistId) => {
         api.getPlaylistTracks(playlistId)
             .then(res => {
                 // REMOVE TRACKS CONTENT
-                let validTracks = res.items.filter(item => item.track !== null)
+                let validTracks = res.items.filter(item => item.track !== null);
+                validTracks.forEach(track => track.active = true)
                 dispatch(setPlaylistTracks(validTracks));
             })
             .catch(err => {
                 if (err.status === 401) {
-                    dispatch(setMessage('PLEASE LOG IN'))
+                    dispatch(setMessage('PLEASE LOG IN', 'error'))
                     dispatch(setToken(null))
                 }
             })
@@ -133,13 +134,14 @@ export const createPlaylist = (playlistBody, userId, trackUris) => {
             .then(res => {
                 api.addTrackToPlaylist(trackUris, res.id)
                     .then(res => {
-                        dispatch(setMessage('PLAYLIST CREATED SUCCESSFULLY'))
+                        console.log('PLAYLIST CREATED SUCCESSFULLY', res);
+                        dispatch(setMessage('PLAYLIST CREATED SUCCESSFULLY', 'success'))
                     })
                     .catch(err => console.log(err))
             })
             .catch(err => {
                 if (err.status === 401) {
-                    dispatch(setMessage('PLEASE LOG IN'))
+                    dispatch(setMessage('PLEASE LOG IN', 'error'))
                     dispatch(setToken(null))
                 }
             })

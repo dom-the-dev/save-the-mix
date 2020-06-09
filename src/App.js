@@ -1,24 +1,27 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import hash from "./helper/hash";
 import "./App.css";
 import {connect} from 'react-redux';
 import {
-    getUser,
-    setToken,
     createPlaylist,
-    userLogout,
     getPlaylistsBySpotify,
-    getPlaylistTracks
+    getPlaylistTracks,
+    getUser,
+    setPlaylistTracks,
+    setToken,
+    userLogout
 } from "./redux/actions";
 import Start from "./components/Start";
 import Header from "./components/Header";
 import Message from "./components/Message";
 import Player from "./components/Player/Player";
+import Popup from "./components/Popup";
 
 const App = props => {
 
-    const [currentPlaylist, setCurrentPlaylist] = useState(null)
+    const [currentPlaylist, setCurrentPlaylist] = useState(null);
+    const [showPopup, setShowPopup] = useState(true);
 
     useEffect(() => {
         if (!props.token) {
@@ -50,6 +53,17 @@ const App = props => {
         }
     }, [props.playlists])
 
+    const handleTracks = (id) => {
+        let newTracks = props.tracks;
+        newTracks.forEach((track) => {
+            if (track.track.id === id) {
+                track.active = !track.active
+            }
+        });
+        let x = [...newTracks];
+        props.setPlaylistTracks(x);
+    }
+
     const changePlaylist = (id) => {
         let newPlaylist = props.playlists.filter(playlist => playlist.id === id);
         setCurrentPlaylist(newPlaylist[0])
@@ -62,9 +76,10 @@ const App = props => {
 
     return (
         <div className="stm-app">
-            {props.message ? <Message message={props.message} type={"error"}/> : null}
+            {showPopup ? <Popup hidePopup={setShowPopup}/> : null}
+            {props.message ? <Message message={props.message.message} type={props.message.type}/> : null}
 
-            <Header userLogout={props.userLogout} userName={props.user.name} message={props.message}/>
+            <Header userLogout={props.userLogout} userName={props.user.name}/>
 
             <div className={"container mt-5 mb-5"}>
                 <div className="row">
@@ -72,7 +87,7 @@ const App = props => {
                         <Player
                             username={props.user.name}
                             playlist={currentPlaylist}
-                            tracks={props.tracks}
+                            handleTracks={handleTracks}
                             changePlaylist={changePlaylist}
                             playlists={props.playlists}
                         />
@@ -88,6 +103,7 @@ const mapStateToProps = state => {
         token: state.token,
         user: state.user,
         tracks: state.tracks,
+        message: state.message,
         playlists: state.playlists
     }
 }
@@ -111,12 +127,23 @@ const mapDispatchToProps = dispatch => {
         },
         getPlaylistTracks: (id) => {
             dispatch(getPlaylistTracks(id))
+        },
+        setPlaylistTracks: (tracks) => {
+            dispatch(setPlaylistTracks(tracks));
         }
     }
 }
 
 App.propTypes = {
-    token: PropTypes.string
+    token: PropTypes.string,
+    message: PropTypes.object,
+    setToken: PropTypes.func,
+    setPlaylistTracks: PropTypes.func,
+    getPlaylistTracks: PropTypes.func,
+    getUser: PropTypes.func,
+    user: PropTypes.object,
+    playlists: PropTypes.array,
+    tracks: PropTypes.array
 };
 
 
