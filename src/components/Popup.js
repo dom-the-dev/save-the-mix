@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faMousePointer, faCheck, faSave} from '@fortawesome/free-solid-svg-icons'
+import './Popup.css';
 
 const Popup = props => {
     return (
@@ -13,25 +14,25 @@ const Popup = props => {
                             <div className="stm-popup__number">
                                 <FontAwesomeIcon icon={faHeart}/>
                             </div>
-                            Follow Spotify-Playlist
+                            1.<br/> Follow Spotify-Playlist
                         </div>
                         <div className="stm-popup__step col-12 col-md-3 text-center">
                             <div className="stm-popup__number">
                                 <FontAwesomeIcon icon={faMousePointer}/>
                             </div>
-                            Select Playlist
+                            2. <br/>Select Playlist
                         </div>
                         <div className="stm-popup__step col-12 col-md-3 text-center">
                             <div className="stm-popup__number">
                                 <FontAwesomeIcon icon={faCheck}/>
                             </div>
-                            Select/Deselect songs
+                            3. <br/>Select/Deselect songs
                         </div>
                         <div className="stm-popup__step col-12 col-md-3 text-center">
                             <div className="stm-popup__number">
                                 <FontAwesomeIcon icon={faSave}/>
                             </div>
-                            Save the mix!
+                            4. <br/>Save the mix!
                         </div>
                         <div className="stm-popup__submit text-center w-100">
                             <button className={"stm-btn"} onClick={() => props.hidePopup(false)}>GOT IT!</button>

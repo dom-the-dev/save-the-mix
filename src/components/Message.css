@@ -1,0 +1,27 @@
+
+/* MESSAGES */
+.stm-message {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.stm-message--success {
+    background-color: green;
+    color: black;
+}
+
+.stm-message--warning {
+    background-color: yellow;
+    color: black;
+}
+
+.stm-message--error {
+    background-color: red;
+    color: white;
+}
+
+.stm-message__content {
+    max-width: 1200px;
+    margin: 0 auto;
+}

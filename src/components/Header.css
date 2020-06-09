@@ -1,0 +1,14 @@
+
+/* HEADER */
+.stm-header {
+    color: rgba(0,0,0,0.8);
+    padding: 10px 0;
+}
+
+.stm-header__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

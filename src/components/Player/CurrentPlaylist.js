@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import './Playlist.css';
 
 const CurrentPlaylist = props => {
 
     const renderTracks = () => {
         return (
-            <div>
+            <ul>
                 {props.tracks.map((track) =>
-                    <div className={"stm-player__track"} key={track.track.id}
-                         onClick={() => props.handleTracks(track.track.id)}>
+                    <li className={"stm-player__listItem " + (track.active ? "" : "stm-palyer__listItem--inactive")}
+                        key={track.track.id}
+                        onClick={() => props.handleTracks(track.track.id)}
+                    >
+                        <img src={track.track.album.images[2].url} width={50} alt={track.track.name}/>
                         <div className="stm-player__trackInfo">
                             <div className={"stm-player__song"}>
                                 <span>{track.track.name}</span>
@@ -21,18 +25,18 @@ const CurrentPlaylist = props => {
                         <div className="stm-player__trackSelect">
                             <input type="checkbox" readOnly checked={track.active}/>
                         </div>
-                    </div>
+                    </li>
                 )}
-            </div>
+            </ul>
         )
     }
 
     return (
-        <div className="stm-player__currentPlaylist col-6 col-md-6 col-lg-3 p-0 order-2 order-lg-2">
-            <div className={"stm-player__progress"}>2. Select songs</div>
+        <div className="stm-player__playlists">
             <div className="stm-player__scroll">
                 {renderTracks()}
             </div>
+            <button className={"stm-btn stm-btn--fullWidth"} onClick={() => props.selectTracks(true)}>SELECT</button>
         </div>
     );
 };

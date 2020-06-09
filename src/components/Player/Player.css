@@ -1,0 +1,103 @@
+
+/* PLAYER */
+.stm-player {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.25);
+}
+
+.stm-player__title {
+    position: absolute;
+    top: 10px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 3px;
+    width: 100%;
+}
+
+
+/* PLAYLIST TABLE*/
+.stm-playlist {
+    font-size: 12px;
+    text-align: left;
+}
+
+.stm-playlist td,
+.stm-playlist th {
+    width: 50%;
+}
+
+/* SAVE THE MIX */
+.stm-stm {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.stm-player__info img {
+    border-radius: 15px;
+}
+
+.stm-player__info {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stm-player__currentPlaylist {
+    background: #41295a;
+}
+
+.stm-player__currentPlaylist {
+    color: #FFFFFF;
+}
+
+
+.stm-player__song {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.stm-player__artist {
+    font-size: 12px;
+}
+
+.stm_player__title {
+    padding: 5px 0;
+}
+
+.stm-player__scroll {
+    max-height: 520px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: yellowgreen;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: yellow;
+}
+
+.stm-progress-bar {
+    margin: 15px 0;
+}
+
+.stm-player__progress {
+    background: yellowgreen;
+    color: black;
+    padding: 5px;
+}

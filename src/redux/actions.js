@@ -79,12 +79,12 @@ export const getPlaylistsBySpotify = (offset) => {
                     let spotifyPlaylists = [];
                     res.items.forEach(item => {
                         if (item.owner.display_name === "Spotify") {
-                            console.log(item);
                             spotifyPlaylists.push({
                                 name: item.name,
                                 id: item.id,
                                 description: item.description,
-                                image: item.images[0].url
+                                image: item.images[0].url,
+                                trackCount: item.tracks.total
                             });
                         }
                     })

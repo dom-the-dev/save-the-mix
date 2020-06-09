@@ -1,0 +1,30 @@
+
+/* START */
+.stm-start {
+    width: 100%;
+    height: 100vh;
+}
+
+.stm-start__intro {
+    background: #FFFFFF;
+
+    padding: 40px 30px;
+    border-radius: 15px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 768px) {
+    .stm-start__intro {
+        padding: 30px 20px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .stm-start__intro {
+        padding: 20px 10px;
+    }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import storage from 'redux-persist/lib/storage';
+import './Header.css';
 
 const Header = props => {
 
@@ -16,10 +17,10 @@ const Header = props => {
         <div className={"stm-header"}>
             <div className="container">
                 <div className="row stm-header__content">
-                    <h1 className={"stm-h1"}>Save the Mix</h1>
+                    <h1 className={"stm-h1"}>&#128190; Save the Mix</h1>
 
                     <div className="stm-header__logout">
-                        <button onClick={() => logOut()} className="stm-btn stm-btn--inverted stm-btn--small">Logut
+                        <button onClick={() => logOut()} className="stm-btn stm-btn--inverted stm-btn--small">Logout
                         </button>
                     </div>
 

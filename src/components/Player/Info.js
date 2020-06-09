@@ -4,7 +4,7 @@ import FormSaveMix from "../FormSaveMix";
 
 const Info = props => {
     return (
-        <div className="stm-player__info col-12 col-md-12 col-lg-6 order-1 order-lg-3">
+        <div className="stm-player__info">
             <div>
                 <h1>{props.name}</h1>
                 {props.description ? <p>{props.description}</p> : null}

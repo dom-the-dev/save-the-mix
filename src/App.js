@@ -40,7 +40,7 @@ const App = props => {
 
 
     useEffect(() => {
-        if (props.user && props.user.country) {
+        if (props.user && props.user.name) {
             props.getPlaylistsBySpotify()
         }
 
