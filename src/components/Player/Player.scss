@@ -26,9 +26,6 @@
         background-color: $accent;
     }
 
-    &--active {
-        background-color: $accentDark;
-    }
 }
 
 .stm-player__listItemImage {
@@ -36,6 +33,7 @@
 }
 
 .stm-player__listItemContent {
+    position: relative;
     flex-grow: 1;
 }
 
@@ -43,4 +41,18 @@
     text-transform: uppercase;
     color: $grey;
     font-size: size(12)
+}
+
+.stm-player__check {
+    position: absolute;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid $white;
+}
+.stm-player__check--active {
+    background-color: $accent;
 }

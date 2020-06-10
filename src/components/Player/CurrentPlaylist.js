@@ -10,7 +10,7 @@ const CurrentPlaylist = props => {
         return (
             <ul className="stm-player__list">
                 {props.tracks.map((track) =>
-                    <li className={"stm-player__listItem " + (track.active ? "stm-player__listItem--active" : "")}
+                    <li className={"stm-player__listItem "}
                         key={track.track.id}
                         onClick={() => props.handleTracks(track.track.id)}
                     >
@@ -21,8 +21,8 @@ const CurrentPlaylist = props => {
                         <div className="stm-player__listItemContent">
                             <div className={"stm-player__itemContentTop"}>{track.track.name}</div>
                             <div className={"stm-player__itemContentBottom"}>{track.track.artists[0].name}</div>
+                            <div className={"stm-player__check " + (track.active ? "stm-player__check--active" : "")}/>
                         </div>
-                        <input type="checkbox" readOnly checked={track.active}/>
                     </li>
                 )}
             </ul>
