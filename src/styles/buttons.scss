@@ -1,0 +1,27 @@
+@import "colors";
+@import "rem";
+@import "fonts";
+
+.dom-btn {
+    color: $white;
+    font-family: $fontBold;
+    font-size: size(12);
+    letter-spacing: size(1);
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    outline: none;
+
+    padding: 8px 22px;
+    border-radius: 50px;
+
+    transition: background-color 0.2s;
+}
+
+.spotify-button {
+    background-color: $spotify;
+
+    &:hover {
+        background-color: $spotifyHover;
+    }
+}

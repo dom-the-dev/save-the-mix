@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import CurrentPlaylist from "./CurrentPlaylist";
 import Playlists from "./Playlists";
 import Info from "./Info";
-import './Player.css';
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 

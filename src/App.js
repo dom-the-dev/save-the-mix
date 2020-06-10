@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import hash from "./helper/hash";
-import "./App.css";
 import {connect} from 'react-redux';
 import {
     createPlaylist,
@@ -75,24 +74,32 @@ const App = props => {
     }
 
     return (
-        <div className="stm-app">
-            {props.message ? <Message message={props.message.message} type={props.message.type}/> : null}
+        <div className="container">
+            <div className="row">
+                <div className="col-12">
 
-            <Header userLogout={props.userLogout} userName={props.user.name}/>
+                    <div className="stm-app">
+                        {props.message ?
+                            <Message message={props.message.message} type={props.message.type}/> : null}
 
-            {showPopup ? <Popup hidePopup={setShowPopup}/> : null}
+                        <Header userLogout={props.userLogout} userName={props.user.name}/>
 
-            <div className={"container mt-5 mb-5"}>
-                <div className="row">
-                    {props.user && props.tracks && props.tracks.length && currentPlaylist ?
-                        <Player
-                            username={props.user.name}
-                            playlist={currentPlaylist}
-                            handleTracks={handleTracks}
-                            changePlaylist={changePlaylist}
-                            playlists={props.playlists}
-                        />
-                        : null}
+                        {showPopup ? <Popup hidePopup={setShowPopup}/> : null}
+
+                        <div className={"container mt-5 mb-5"}>
+                            <div className="row">
+                                {props.user && props.tracks && props.tracks.length && currentPlaylist ?
+                                    <Player
+                                        username={props.user.name}
+                                        playlist={currentPlaylist}
+                                        handleTracks={handleTracks}
+                                        changePlaylist={changePlaylist}
+                                        playlists={props.playlists}
+                                    />
+                                    : null}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

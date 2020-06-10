@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import storage from 'redux-persist/lib/storage';
-import './Header.css';
-
 const Header = props => {
 
     const logOut = () => {

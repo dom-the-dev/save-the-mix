@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faMousePointer, faCheck, faSave} from '@fortawesome/free-solid-svg-icons'
-import './Popup.css';
 
 const Popup = props => {
     return (

@@ -1,0 +1,85 @@
+@import "media-queries";
+@import "rem";
+@import "colors";
+@import "fonts";
+
+.doms-h1,
+.doms-h2,
+.doms-h3,
+.doms-h4,
+.doms-h5,
+.doms-h6 {
+    text-transform: uppercase;
+    font-family: inherit;
+    padding: 9px 0 12px 0;
+}
+
+.doms-h1 {
+    font-size: size(20);
+
+    @include media-min($breakpoint-md) {
+        font-size: size(24);
+    }
+
+    @include media-min($breakpoint-lg) {
+        font-size: size(28);
+    }
+}
+
+.doms-h2 {
+
+}
+
+.doms-h3 {
+
+}
+
+.doms-h4 {
+
+}
+
+.doms-h5 {
+
+}
+
+.doms-h6 {
+
+}
+
+.doms-text {
+    font-family: $fontRegular, 'Helvetica Neue', sans-serif;
+    font-size: size(16);
+
+    & a {
+        color: $accent;
+
+        &:hover {
+            color: $accent;
+            text-decoration: underline;
+        }
+    }
+
+    @include media-min($breakpoint-md) {
+        font-size: size(24);
+    }
+
+    @include media-min($breakpoint-lg) {
+        font-size: size(28);
+    }
+}
+
+.doms-text--light {
+    font-family: $fontLight, 'Helvetica Neue', sans-serif;
+}
+
+.doms-text--small {
+    font-size: size(12);
+
+    @include media-min($breakpoint-md) {
+        font-size: size(24);
+    }
+
+    @include media-min($breakpoint-lg) {
+        font-size: size(28);
+    }
+}

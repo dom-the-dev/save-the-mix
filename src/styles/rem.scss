@@ -1,0 +1,7 @@
+$base-size: 16;
+//Function to convert px value into rem
+//You can replace rem with any other value you want (rem is most preferred value for web)
+@function size($size) {
+     $remSize: $size / 16 * 1;
+    @return $remSize+rem;
+}

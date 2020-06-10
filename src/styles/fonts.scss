@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'RobotoCondensed-Regular';
+    src: local('RobotoCondensed-Regular'), url(../fonts/RobotoCondensed-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'RobotoCondensed-Light';
+    src: local('RobotoCondensed-Light'), url(../fonts/RobotoCondensed-Light.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'RobotoCondensed-Bold';
+    src: local('RobotoCondensed-Bold'), url(../fonts/RobotoCondensed-Bold.ttf) format('truetype');
+}
+
+$fontRegular: 'RobotoCondensed-Regular';
+$fontLight: 'RobotoCondensed-Light';
+$fontBold: 'RobotoCondensed-Bold';
