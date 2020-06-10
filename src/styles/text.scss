@@ -1,7 +1,7 @@
 @import "media-queries";
 @import "rem";
-@import "colors";
 @import "fonts";
+@import "colors";
 
 .doms-h1,
 .doms-h2,
@@ -60,26 +60,30 @@
     }
 
     @include media-min($breakpoint-md) {
-        font-size: size(24);
+        font-size: size(20);
     }
 
     @include media-min($breakpoint-lg) {
-        font-size: size(28);
+        font-size: size(24);
+    }
+}
+
+
+.doms-text--small {
+    font-size: size(12);
+
+    @include media-min($breakpoint-md) {
+        font-size: size(16);
+    }
+
+    @include media-min($breakpoint-lg) {
+        font-size: size(18);
     }
 }
 
 .doms-text--light {
     font-family: $fontLight, 'Helvetica Neue', sans-serif;
 }
-
-.doms-text--small {
-    font-size: size(12);
-
-    @include media-min($breakpoint-md) {
-        font-size: size(24);
-    }
-
-    @include media-min($breakpoint-lg) {
-        font-size: size(28);
-    }
+.doms-text--bold {
+    font-family: $fontBold, 'Helvetica Neue', sans-serif;
 }

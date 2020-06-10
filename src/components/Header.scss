@@ -1,0 +1,30 @@
+@import "../styles/fonts";
+@import "../styles/variables";
+@import "../styles/media-queries";
+@import "../styles/colors";
+
+.stm-logout {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    background-color: $accent;
+    color: $primary-color;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    font-size: 12px;
+    transition: color 0.2s;
+
+    @include media-min($breakpoint-md) {
+        top: 10px;
+    }
+
+    &:hover {
+        color: $white;
+    }
+}

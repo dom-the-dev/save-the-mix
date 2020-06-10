@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import storage from 'redux-persist/lib/storage';
+import './Header.scss';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPowerOff} from "@fortawesome/free-solid-svg-icons";
+
 const Header = props => {
 
     const logOut = () => {
@@ -12,18 +16,12 @@ const Header = props => {
     }
 
     return (
-        <div className={"stm-header"}>
-            <div className="container">
-                <div className="row stm-header__content">
-                    <h1 className={"stm-h1"}>&#128190; Save the Mix</h1>
+        <div className={"d-flex justify-content-center"}>
+            <h1 className={"doms-h1"}>&#128190; Save the Mix</h1>
 
-                    <div className="stm-header__logout">
-                        <button onClick={() => logOut()} className="stm-btn stm-btn--inverted stm-btn--small">Logout
-                        </button>
-                    </div>
-
-                </div>
-            </div>
+            <button onClick={() => logOut()} className="stm-logout">
+                <FontAwesomeIcon icon={faPowerOff}/>
+            </button>
         </div>
     );
 };

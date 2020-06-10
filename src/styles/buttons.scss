@@ -1,6 +1,7 @@
 @import "colors";
 @import "rem";
 @import "fonts";
+@import "media-queries";
 
 .dom-btn {
     color: $white;
@@ -11,11 +12,23 @@
     text-align: center;
     border: none;
     outline: none;
+    background-color: $accent;
 
     padding: 8px 22px;
     border-radius: 50px;
 
     transition: background-color 0.2s;
+
+    &:hover {
+        background-color: $accentLight;
+    }
+
+    @include media-min($breakpoint-md) {
+        font-size: size(14);
+    }
+    @include media-min($breakpoint-lg) {
+        font-size: size(16);
+    }
 }
 
 .spotify-button {

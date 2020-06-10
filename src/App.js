@@ -12,15 +12,12 @@ import {
     userLogout
 } from "./redux/actions";
 import Start from "./components/Start";
-import Header from "./components/Header";
-import Message from "./components/Message";
 import Player from "./components/Player/Player";
-import Popup from "./components/Popup";
+import Layout from "./components/Layout";
 
 const App = props => {
 
     const [currentPlaylist, setCurrentPlaylist] = useState(null);
-    const [showPopup, setShowPopup] = useState(true);
 
     useEffect(() => {
         if (!props.token) {
@@ -74,35 +71,17 @@ const App = props => {
     }
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-12">
-
-                    <div className="stm-app">
-                        {props.message ?
-                            <Message message={props.message.message} type={props.message.type}/> : null}
-
-                        <Header userLogout={props.userLogout} userName={props.user.name}/>
-
-                        {showPopup ? <Popup hidePopup={setShowPopup}/> : null}
-
-                        <div className={"container mt-5 mb-5"}>
-                            <div className="row">
-                                {props.user && props.tracks && props.tracks.length && currentPlaylist ?
-                                    <Player
-                                        username={props.user.name}
-                                        playlist={currentPlaylist}
-                                        handleTracks={handleTracks}
-                                        changePlaylist={changePlaylist}
-                                        playlists={props.playlists}
-                                    />
-                                    : null}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Layout>
+            {props.user && props.tracks && props.tracks.length && currentPlaylist ?
+                <Player
+                    username={props.user.name}
+                    playlist={currentPlaylist}
+                    handleTracks={handleTracks}
+                    changePlaylist={changePlaylist}
+                    playlists={props.playlists}
+                />
+                : null}
+        </Layout>
     );
 };
 

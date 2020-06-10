@@ -7,8 +7,8 @@ const Start = () => {
 
     return (
         <div className={"container stm-start"}>
-            <div className="row min-vh-100">
-                <div className="col-12 my-auto">
+            <div className="row min-vh-100 justify-content-md-center">
+                <div className="col-12 col-md-10 my-auto">
                     <h1 className={"doms-h1"}>&#128190; Save the mix</h1>
 
                     <p className={"doms-text"}>Never lose a playlist again.<br/>

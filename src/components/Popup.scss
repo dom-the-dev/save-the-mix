@@ -1,0 +1,39 @@
+@import "../styles/colors";
+@import "../styles/variables";
+@import "../styles/text";
+
+.stm-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 2;
+    overflow: hidden;
+}
+
+.stm-popup__modal {
+    text-align: center;
+    background: $white;
+    color: $primary-color;
+    padding: $padding;
+}
+
+.stm-popup__step {
+    text-align: center;
+    margin-bottom: size(24);
+}
+
+.stm-popup__icon {
+    color: $accent;
+    background-color: $primary-color;
+    width: size(50);
+    height: size(50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: size(10);
+}
