@@ -31,6 +31,7 @@
     }
 }
 
+.dom-btn-absolute,
 .dom-btn-fixed {
     position: fixed;
     left: 0;
@@ -39,6 +40,11 @@
     border-radius: 0;
     width: 100%;
     z-index: 2;
+    font-size: size(28);
+    padding: 10px;
+}
+.dom-btn-absolute {
+    position: absolute;
 }
 
 .dom-btn-fixed--left {

@@ -41,22 +41,10 @@ const Popup = props => {
                                 </div>
                             </div>
                             <div className="stm-popoup__gotIt">
-                                <button className={"dom-btn"} onClick={() => props.hidePopup(false)}>GOT IT!</button>
+                                <button className={"dom-btn dom-btn-absolute"} onClick={() => props.hidePopup(false)}>GOT IT!</button>
                             </div>
                         </div>
                     </div>
-                    {/*<div className="col-12 col-md-6 my-auto stm-popup__modal">*/}
-                    {/*</div>*/}
-
-
-                    {/*<div className="stm-popup__step col-12 col-md-3 text-center">*/}
-                    {/*</div>*/}
-
-                    {/*<div className="stm-popup__step col-12 col-md-3 text-center">*/}
-                    {/*</div>*/}
-
-                    {/*<div className="stm-popup__submit text-center w-100">*/}
-                    {/*</div>*/}
                 </div>
             </div>
         </div>

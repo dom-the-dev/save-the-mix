@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {createPlaylist} from "../../redux/actions";
+import {connect} from "react-redux";
 
 const Info = props => {
     const TODAY = new Date();
@@ -65,4 +67,30 @@ Info.propTypes = {
     tracks: PropTypes.array.isRequired
 };
 
-export default Info;
+
+Info.propTypes = {
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    image: PropTypes.string,
+    tracks: PropTypes.array.isRequired,
+    createPlaylist: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+    }
+}
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createPlaylist: (playlistBody, userId, tracksUris) => {
+            dispatch(createPlaylist(playlistBody, userId, tracksUris))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Info);
+
