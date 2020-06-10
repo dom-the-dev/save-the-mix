@@ -17,20 +17,11 @@ const Player = props => {
             <div className={"text-center stm-player__title"}>
                 {selectedPlaylist ?
                     selectedTracks ?
-                        <>
-                            <button onClick={() => setSelectedTracks(false)}>
-                                <FontAwesomeIcon icon={faArrowLeft}/>
-                            </button>
-                            <h2 className="doms-h2">SAVE THE MIX</h2>
-                        </>
+                        <h2 className="doms-h2">SAVE THE MIX</h2>
                         :
-                        <>
-                            <h2 className="doms-h2">SELECT SONGS</h2>
-                        </>
+                        <h2 className="doms-h2">SELECT SONGS</h2>
                     :
-                    <>
-                        <h2 className="doms-h2">SELECT PLAYLIST</h2>
-                    </>
+                    <h2 className="doms-h2">SELECT PLAYLIST</h2>
                 }
             </div>
 
@@ -51,7 +42,9 @@ const Player = props => {
             {selectedTracks ?
                 <Info name={props.playlist.name} description={props.playlist.description}
                       image={props.playlist.image}
-                      tracks={props.tracks}/>
+                      tracks={props.tracks}
+                      setSelectedTracks={setSelectedTracks}
+                />
                 : null}
         </div>
     );

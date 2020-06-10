@@ -56,3 +56,27 @@
 .stm-player__check--active {
     background-color: $accent;
 }
+
+.stm-player__info {
+    text-align: center;
+}
+
+.stm-player__cover {
+    max-width: 250px;
+    margin: 10px 0;
+}
+
+.stm-player__input {
+    background-color: transparent;
+    border: 2px solid $accent;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 22px;
+    color: $white;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.stm-player__form:last-of-type {
+    margin-bottom: 50px;
+}
