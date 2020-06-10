@@ -10,15 +10,12 @@ const Start = () => {
             <div className="stm-start__intro">
                 <h1 className="stm-h1">Save the mix</h1>
 
-                <p className="stm-text">Never loose a playlist again.<br/>
+                <p className="stm-text">Never lose a playlist again.<br/>
                     SAVETHEMIX helps you to safe personalized playlists created by Spotify. <br/>
                 </p>
 
 
-                <p className="stm-info_text">An open source project by <a className="stm-info_link"
-                                                                          href="https://www.domthedev.com"
-                                                                          target="_blank"
-                                                                          rel="noopener noreferrer">Dominik
+                <p className="stm-info_text">An open source project by <a className="stm-info_link" href="https://www.domthedev.com" target="_blank" rel="noopener noreferrer">Dominik
                     Amrugiewicz</a>. You can find this repository on <a
                     className={"stm-info_link"}
                     href="https://github.com/dom-the-dev/save-the-mix" target="_blank"

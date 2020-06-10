@@ -76,10 +76,11 @@ const App = props => {
 
     return (
         <div className="stm-app">
-            {showPopup ? <Popup hidePopup={setShowPopup}/> : null}
             {props.message ? <Message message={props.message.message} type={props.message.type}/> : null}
 
             <Header userLogout={props.userLogout} userName={props.user.name}/>
+
+            {showPopup ? <Popup hidePopup={setShowPopup}/> : null}
 
             <div className={"container mt-5 mb-5"}>
                 <div className="row">
