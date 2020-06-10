@@ -27,7 +27,15 @@
 }
 
 .doms-h2 {
+    font-size: size(18);
 
+    @include media-min($breakpoint-md) {
+        font-size: size(22);
+    }
+
+    @include media-min($breakpoint-lg) {
+        font-size: size(24);
+    }
 }
 
 .doms-h3 {

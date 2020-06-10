@@ -6,34 +6,31 @@ import Playlists from "./Playlists";
 import Info from "./Info";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import './Player.scss';
 
 const Player = props => {
     const [selectedPlaylist, setSelectedPlaylist] = useState(false);
     const [selectedTracks, setSelectedTracks] = useState(false);
 
     return (
-        <div className={"stm-player col-12"}>
-
-            <div className={"stm-player__title"}>
+        <div className={"stm-player"}>
+            <div className={"text-center stm-player__title"}>
                 {selectedPlaylist ?
                     selectedTracks ?
-                        <div>
+                        <>
                             <button onClick={() => setSelectedTracks(false)}>
                                 <FontAwesomeIcon icon={faArrowLeft}/>
                             </button>
-                            SAVE THE MIX
-                        </div>
+                            <h2 className="doms-h2">SAVE THE MIX</h2>
+                        </>
                         :
-                        <div>
-                            <button onClick={() => setSelectedPlaylist(false)}>
-                                <FontAwesomeIcon icon={faArrowLeft}/>
-                            </button>
-                            SELECT SONGS
-                        </div>
+                        <>
+                            <h2 className="doms-h2">SELECT SONGS</h2>
+                        </>
                     :
-                    <div>
-                        SELECT PLAYLIST
-                    </div>
+                    <>
+                        <h2 className="doms-h2">SELECT PLAYLIST</h2>
+                    </>
                 }
             </div>
 
@@ -47,6 +44,7 @@ const Player = props => {
                 <CurrentPlaylist
                     handleTracks={props.handleTracks}
                     selectTracks={setSelectedTracks}
+                    setSelectedPlaylist={setSelectedPlaylist}
                 />
                 : null}
 

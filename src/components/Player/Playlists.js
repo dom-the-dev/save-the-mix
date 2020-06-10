@@ -10,7 +10,7 @@ const Playlists = props => {
 
     const renderPlaylists = () => {
         return (
-            <ul>
+            <ul className="stm-player__list">
                 {props.playlists.map(playlist => {
                     return (
                         <li key={playlist.id}
@@ -18,9 +18,13 @@ const Playlists = props => {
                             value={playlist.id}
                             className={"stm-player__listItem"}
                         >
-                            <img src={playlist.image} width={50} alt={playlist.name}/>
-                            <span>{playlist.name}</span>
-                            <span>Tracks: {playlist.trackCount}</span>
+                            <div className="stm-player__listItemImage">
+                                <img className={"stm-image"} src={playlist.image} width={50} alt={playlist.name}/>
+                            </div>
+                            <div className="stm-player__listItemContent">
+                                <div className={"stm-player__itemContentTop"}>{playlist.name}</div>
+                                <div className={"stm-player__itemContentBottom"}>Tracks: {playlist.trackCount}</div>
+                            </div>
                         </li>
                     )
                 })}
@@ -29,11 +33,9 @@ const Playlists = props => {
     }
 
     return (
-        <div className="stm-player__playlists">
-            <div className="stm-player__scroll">
-                {renderPlaylists()}
-            </div>
-        </div>
+        <>
+            {renderPlaylists()}
+        </>
     );
 };
 

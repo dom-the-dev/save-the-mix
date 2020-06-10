@@ -11,12 +11,13 @@ const Popup = props => {
                 <div className="row min-vh-100 justify-content-md-center">
                     <div className="col-12 col-md-10 my-auto">
                         <div className="stm-popup__modal">
+                            <div className="stm-popup__title">FOLLOW THESE STEPS</div>
                             <div className="d-flex flex-wrap">
                                 <div className="col-12 col-md-3 text-center stm-popup__step">
                                     <div className="stm-popup__icon">
                                         <FontAwesomeIcon icon={faHeart}/>
                                     </div>
-                                    <span className={"doms-text doms-text--small"}>Follow Spotify-Playlist</span>
+                                    <span className={"doms-text doms-text--small"}>Follow Spotify</span>
                                 </div>
                                 <div className="col-12 col-md-3 text-center stm-popup__step">
                                     <div className="stm-popup__icon">
@@ -30,7 +31,7 @@ const Popup = props => {
                                     <div className="stm-popup__icon">
                                         <FontAwesomeIcon icon={faCheck}/>
                                     </div>
-                                    <span className={"doms-text doms-text--small"}>Select/Deselect songs</span>
+                                    <span className={"doms-text doms-text--small"}>Select songs</span>
                                 </div>
                                 <div className="col-12 col-md-3 text-center stm-popup__step">
                                     <div className="stm-popup__icon">

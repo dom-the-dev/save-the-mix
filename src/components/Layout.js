@@ -12,8 +12,8 @@ const Layout = props => {
         <div>
             {showPopup ? <Popup hidePopup={setShowPopup}/> : null}
             <div className="container">
-                <div className="row">
-                    <div className="col-12">
+                <div className="row justify-content-md-center">
+                    <div className="col-12 col-md-8">
 
                         {props.message ?
                             <Message message={props.message.message} type={props.message.type}/>

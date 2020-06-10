@@ -1,0 +1,46 @@
+@import '../../styles/colors';
+@import '../../styles/rem';
+@import '../../styles/fonts';
+@import '../../styles/general';
+
+.stm-player__title {
+    color: $accent;
+}
+
+
+.stm-player__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.stm-player__listItem {
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: $accent;
+    }
+
+    &--active {
+        background-color: $accentDark;
+    }
+}
+
+.stm-player__listItemImage {
+    margin-right: 15px;
+}
+
+.stm-player__listItemContent {
+    flex-grow: 1;
+}
+
+.stm-player__itemContentBottom {
+    text-transform: uppercase;
+    color: $grey;
+    font-size: size(12)
+}

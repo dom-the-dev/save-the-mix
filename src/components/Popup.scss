@@ -37,3 +37,12 @@
     margin: 0 auto;
     margin-bottom: size(10);
 }
+
+.stm-popup__title {
+    background-color: $accent;
+    margin: -20px;
+    margin-bottom: 25px;
+    padding: 10px;
+    font-family: $fontBold;
+    color: $white;
+}
