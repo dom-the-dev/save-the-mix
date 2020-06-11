@@ -4,9 +4,6 @@
 @import "../styles/colors";
 
 .stm-logout {
-    position: absolute;
-    right: 10px;
-    top: 5px;
     background-color: $accent;
     color: $primary-color;
     border: none;
@@ -19,6 +16,7 @@
     width: 25px;
     font-size: 12px;
     transition: color 0.2s;
+    margin-left: 5px;
 
     @include media-min($breakpoint-md) {
         top: 10px;
@@ -27,4 +25,11 @@
     &:hover {
         color: $white;
     }
+}
+
+.navi {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 5px;
 }

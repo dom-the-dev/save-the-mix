@@ -1,12 +1,19 @@
 import React from 'react';
 import {authEndpoint, clientId, redirectUri, scopes} from "../config/config";
 import './Start.scss';
+import Imprint from "./Imprint";
+import PropTypes from 'prop-types';
 
-const Start = () => {
+const Start = (props) => {
     const AUTH_HREF = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`;
+
+    if(props.showImprint) {
+        return <Imprint setShowImprint={props.setShowImprint}/>
+    }
 
     return (
         <div className={"container stm-start"}>
+            <p className={"doms-text doms-text--small doms-text--light position-imprint-start"}><a href={"#"} className={""} onClick={() => props.setShowImprint(true)}>Imprint</a></p>
             <div className="row min-vh-100 justify-content-md-center">
                 <div className="col-12 col-md-10 my-auto">
                     <h1 className={"doms-h1"}>&#128190; Save the mix</h1>
@@ -26,6 +33,11 @@ const Start = () => {
             </div>
         </div>
     );
+};
+
+Start.propTypes = {
+    showImprint: PropTypes.bool,
+    setShowImprint: PropTypes.func,
 };
 
 export default Start;

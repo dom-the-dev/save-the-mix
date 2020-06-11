@@ -19,10 +19,9 @@ const Layout = props => {
                             <Message message={props.message.message} type={props.message.type}/>
                             : null}
 
-                        <Header userLogout={props.userLogout} userName={props.user.name}/>
+                        <Header userLogout={props.userLogout} userName={props.user.name} setShowImprint={props.setShowImprint}/>
 
                         {props.children}
-
                     </div>
                 </div>
             </div>

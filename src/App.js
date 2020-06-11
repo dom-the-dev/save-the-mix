@@ -14,10 +14,12 @@ import {
 import Start from "./components/Start";
 import Player from "./components/Player/Player";
 import Layout from "./components/Layout";
+import Imprint from "./components/Imprint";
 
 const App = props => {
 
     const [currentPlaylist, setCurrentPlaylist] = useState(null);
+    const [showImprint, setShowImprint] = useState(false);
 
     useEffect(() => {
         if (!props.token) {
@@ -66,21 +68,29 @@ const App = props => {
         props.getPlaylistTracks(id)
     }
 
+    if (showImprint) {
+        return <Imprint setShowImprint={setShowImprint}/>
+    }
+
     if (!props.token) {
-        return <Start/>
+        return <Start showImprint={showImprint} setShowImprint={setShowImprint}/>
     }
 
     return (
-        <Layout>
-            {props.user && props.tracks && props.tracks.length && currentPlaylist ?
-                <Player
-                    username={props.user.name}
-                    playlist={currentPlaylist}
-                    handleTracks={handleTracks}
-                    changePlaylist={changePlaylist}
-                    playlists={props.playlists}
-                />
-                : null}
+        <Layout setShowImprint={setShowImprint}>
+            {
+                props.user && props.tracks && props.tracks.length && currentPlaylist ?
+                    <Player
+                        username={props.user.name}
+                        playlist={currentPlaylist}
+                        handleTracks={handleTracks}
+                        changePlaylist={changePlaylist}
+                        playlists={props.playlists}
+                    />
+
+                    : null
+            }
+
         </Layout>
     );
 };

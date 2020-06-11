@@ -19,9 +19,18 @@ const Header = props => {
         <div className={"d-flex justify-content-center"}>
             <h1 className={"doms-h1"}>&#128190; Save the Mix</h1>
 
-            <button onClick={() => logOut()} className="stm-logout">
-                <FontAwesomeIcon icon={faPowerOff}/>
-            </button>
+            <div className="navi">
+                <p className={"doms-text doms-text--small doms-text--light position-imprint"}>
+                    <a href={"#"}
+                       className={""}
+                       onClick={() => props.setShowImprint(true)}>Imprint</a>
+                </p>
+                <button onClick={() => logOut()} className="stm-logout">
+                    <FontAwesomeIcon icon={faPowerOff}/>
+                </button>
+
+
+            </div>
         </div>
     );
 };
