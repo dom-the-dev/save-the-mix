@@ -15,11 +15,13 @@ const Layout = props => {
                 <div className="row justify-content-md-center">
                     <div className="col-12 col-md-8">
 
+
+                        <Header userLogout={props.userLogout} userName={props.user.name} setShowImprint={props.setShowImprint}/>
+
                         {props.message ?
                             <Message message={props.message.message} type={props.message.type}/>
                             : null}
 
-                        <Header userLogout={props.userLogout} userName={props.user.name} setShowImprint={props.setShowImprint}/>
 
                         {props.children}
                     </div>
