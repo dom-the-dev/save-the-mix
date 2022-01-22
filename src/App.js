@@ -129,6 +129,9 @@ const mapDispatchToProps = dispatch => {
         userLogout: () => {
             dispatch(userLogout())
         },
+        getPlaylistsBySpotify: () => {
+            dispatch(getPlaylistsBySpotify(0))
+        },
         getPlaylistTracks: (id) => {
             dispatch(getPlaylistTracks(id))
         },
