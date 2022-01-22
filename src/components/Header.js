@@ -17,13 +17,14 @@ const Header = props => {
 
     return (
         <div className={"d-flex justify-content-center"}>
-            <h1 className={"doms-h1"}>&#128190; Save the Mix</h1>
+            <h1 className={"doms-h1"}><a href="/"><span role="img" aria-label={"emoji disc"}>&#128190;</span> Save the Mix</a></h1>
 
             <div className="navi">
                 <p className={"doms-text doms-text--small doms-text--light position-imprint"}>
-                    <a href={"#"}
-                       className={""}
-                       onClick={() => props.setShowImprint(true)}>Imprint</a>
+                    <button
+                        type={"button"}
+                       className={"imprint-button"}
+                       onClick={() => props.setShowImprint(true)}>Imprint</button>
                 </p>
                 <button onClick={() => logOut()} className="stm-logout">
                     <FontAwesomeIcon icon={faPowerOff}/>

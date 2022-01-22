@@ -16,76 +16,86 @@ import Player from "./components/Player/Player";
 import Layout from "./components/Layout";
 import Imprint from "./components/Imprint";
 
-const App = props => {
+const App = ({
+                 token,
+                 setToken,
+                 getUser,
+                 user,
+                 getPlaylistsBySpotify,
+                 playlists,
+                 getPlaylistTracks,
+                 tracks,
+                 setPlaylistTracks
+}) => {
 
     const [currentPlaylist, setCurrentPlaylist] = useState(null);
     const [showImprint, setShowImprint] = useState(false);
 
     useEffect(() => {
-        if (!props.token) {
+        if (!token) {
             let _token = hash.access_token;
             if (_token) {
-                props.setToken(_token);
+                setToken(_token);
             }
         }
     }, [])
 
     useEffect(() => {
-        if (props.token) {
-            props.getUser();
+        if (token) {
+            getUser();
         }
-    }, [props.token])
+    }, [token])
 
 
     useEffect(() => {
-        if (props.user && props.user.name) {
-            props.getPlaylistsBySpotify()
+        if (user && user.name) {
+            getPlaylistsBySpotify()
         }
 
-    }, [props.user])
+    }, [user])
 
     useEffect(() => {
-        if (props.playlists && props.playlists.length) {
-            setCurrentPlaylist(props.playlists[0]);
-            props.getPlaylistTracks(props.playlists[0].id)
+        if (playlists && playlists.length) {
+            setCurrentPlaylist(playlists[0]);
+            getPlaylistTracks(playlists[0].id)
         }
-    }, [props.playlists])
+    }, [playlists])
 
     const handleTracks = (id) => {
-        let newTracks = props.tracks;
+        let newTracks = tracks;
         newTracks.forEach((track) => {
             if (track.track.id === id) {
                 track.active = !track.active
             }
         });
         let x = [...newTracks];
-        props.setPlaylistTracks(x);
+        setPlaylistTracks(x);
     }
 
     const changePlaylist = (id) => {
-        let newPlaylist = props.playlists.filter(playlist => playlist.id === id);
+        let newPlaylist = playlists.filter(playlist => playlist.id === id);
         setCurrentPlaylist(newPlaylist[0])
-        props.getPlaylistTracks(id)
+        getPlaylistTracks(id)
     }
 
     if (showImprint) {
         return <Imprint setShowImprint={setShowImprint}/>
     }
 
-    if (!props.token) {
+    if (!token) {
         return <Start showImprint={showImprint} setShowImprint={setShowImprint}/>
     }
 
     return (
         <Layout setShowImprint={setShowImprint}>
             {
-                props.user && props.tracks && props.tracks.length && currentPlaylist ?
+                user && tracks && tracks.length && currentPlaylist ?
                     <Player
-                        username={props.user.name}
+                        username={user.name}
                         playlist={currentPlaylist}
                         handleTracks={handleTracks}
                         changePlaylist={changePlaylist}
-                        playlists={props.playlists}
+                        playlists={playlists}
                     />
 
                     : null

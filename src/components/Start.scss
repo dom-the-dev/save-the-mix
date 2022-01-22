@@ -8,3 +8,14 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+.imprint-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: $accent;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

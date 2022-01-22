@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
-const CurrentPlaylist = props => {
+const CurrentPlaylist = ({tracks, handleTracks, setSelectedPlaylist, selectTracks}) => {
+
+    console.log(tracks)
 
     const renderTracks = () => {
         return (
             <ul className="stm-player__list">
-                {props.tracks.map((track) =>
+                {tracks.map((track) =>
                     <li className={"stm-player__listItem "}
                         key={track.track.id}
-                        onClick={() => props.handleTracks(track.track.id)}
+                        onClick={() => handleTracks(track.track.id)}
                     >
                         <div className="stm-player__listItemImage">
-                            <img className={"stm-image"} src={track.track.album.images[2].url} width={50}
-                                 alt={track.track.name}/>
+                            {track.track.album.images.length ?
+                                <img className={"stm-image"} src={track.track.album.images[2].url} width={50}
+                                     alt={track.track.name}/> : "no image"}
                         </div>
                         <div className="stm-player__listItemContent">
                             <div className={"stm-player__itemContentTop"}>{track.track.name}</div>
@@ -32,10 +33,10 @@ const CurrentPlaylist = props => {
     return (
         <>
             <button className={"dom-btn dom-btn-fixed dom-btn-fixed--left"}
-                    onClick={() => props.setSelectedPlaylist(false)}>BACK
+                    onClick={() => setSelectedPlaylist(false)}>BACK
             </button>
             <button className={"dom-btn dom-btn-fixed dom-btn-fixed--right"}
-                    onClick={() => props.selectTracks(true)}>NEXT
+                    onClick={() => selectTracks(true)}>NEXT
             </button>
             {renderTracks()}
         </>

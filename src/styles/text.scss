@@ -17,6 +17,16 @@
 .doms-h1 {
     font-size: size(20);
 
+    a {
+        color: white;
+        text-decoration: none;
+
+        &:hover {
+            color: $accent;
+            text-decoration: none;
+        }
+    }
+
     @include media-min($breakpoint-md) {
         font-size: size(24);
     }

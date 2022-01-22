@@ -2,9 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  
 ---
 
-1. copy config.dist.js to config.js
+Create config file
+1. run `cp src/config/config.dist.js src/config/config.js` in your terminal
 2. adjust your clientId, redirectUri and the scopes
-3. copy env.dist to .env and adjust domain
+3. run `cp .env.dist .env` in your terminal
 
 
 
